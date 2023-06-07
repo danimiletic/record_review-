@@ -1,11 +1,53 @@
+import { useState } from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider';
 
-const Register = () => {
+const Register = ({ handleRegister }) => {
+  const [user, setUser] = useState({ email: '', password: '', passwordConfirmation: '' })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (user.password === user.passwordConfirmation) {
+    handleRegister(user)
+    setUser({ email: '', passowrd: '', passwordConfirmation: '' })
+    }
+    else {
+      alert('Passwords do not match!')
+    }
+  }
   return (
     <>
       <h1>Register Page</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type='email'
+          name='email'
+          value={user.email}
+          onChange={(e) => setUser({...user, email: e.target.value})}
+          autoFocus
+          required
+        />
+        <input 
+          type='password'
+          name='password'
+          value={user.password}
+          onChange={(e) => setUser({...user, password: e.target.value})}
+        />
+        <input 
+          type='password'
+          name='passwordConfirmation'
+          value={user.passwordConfirmation}
+          onChange={(e) => setUser({...user, passwordConfirmation: e.target.value})}
+        />
+      </form>
+      <button type='submit'>Submit</button>
     </>
   )
 }
 
-export default Register; 
+const ConnectedRegister = (props) => (
+  <AuthConsumer>
+    { value => <Register {...props} {...value} />}
+  </AuthConsumer>
+)
+
+export default ConnectedRegister; 
