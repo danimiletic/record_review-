@@ -7,8 +7,8 @@ const Register = ({ handleRegister }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (user.password === user.passwordConfirmation) {
-    handleRegister(user)
-    setUser({ email: '', passowrd: '', passwordConfirmation: '' })
+      handleRegister(user)
+      setUser({ email: '', password: '' })
     }
     else {
       alert('Passwords do not match!')
@@ -18,6 +18,7 @@ const Register = ({ handleRegister }) => {
     <>
       <h1>Register Page</h1>
       <form onSubmit={handleSubmit}>
+        <label>Email</label>
         <input 
           type='email'
           name='email'
@@ -26,20 +27,24 @@ const Register = ({ handleRegister }) => {
           autoFocus
           required
         />
+        <label>Password</label>
         <input 
           type='password'
           name='password'
           value={user.password}
           onChange={(e) => setUser({...user, password: e.target.value})}
+          required
         />
+        <label>Password Confirmation</label>
         <input 
           type='password'
           name='passwordConfirmation'
           value={user.passwordConfirmation}
           onChange={(e) => setUser({...user, passwordConfirmation: e.target.value})}
+          required
         />
-      </form>
       <button type='submit'>Submit</button>
+      </form>
     </>
   )
 }

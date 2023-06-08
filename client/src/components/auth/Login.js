@@ -15,24 +15,23 @@ const Login = ({ handleLogin }) => {
       <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
         <label>Email</label>
-          <input 
-            type='email'
-            name='email'
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-            required
-            autoFocus
-          />
-          <input 
-            type='password'
-            name='password'
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            required
-            autoFocus
-          />
-      </form>
+        <input 
+          type='email'
+          name='email'
+          value={user.email}
+          onChange={(e) => setUser({...user, email: e.target.value})}
+          required
+          autoFocus
+        />
+        <label>Password</label>
+        <input 
+          type='password'
+          name='password'
+          value={user.password}
+          onChange={(e) => setUser({...user, password: e.target.value})}
+        />
       <button type='submit'>Submit</button>
+      </form>
     </>
   )
 }

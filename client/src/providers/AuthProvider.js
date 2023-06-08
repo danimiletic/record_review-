@@ -7,21 +7,21 @@ export const AuthConsumer = AuthContext.Consumer;
 
 const AuthProvider = ({ children }) => {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleRegister = (user) => {
-    axios.post("/api/auth", user)
+    axios.post('/api/auth', user)
       .then(res => {
         setUser(res.data.data)
         navigate('/')
       })
-      .catch( err => console.log(err))
+      .catch( err => console.log(err.data))
   }
 
   const handleLogin = (user) => {
-    axios.get("/api/auth/sign_in", user)
+    axios.post('/api/auth/sign_in', user)
       .then( res => {
         setUser(res.data.data)
         navigate('/')
@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const handleLogout = () => {
-    axios.delete("/api/auth/sign_out")
+    axios.delete('/api/auth/sign_out')
       .then( res => {
         setUser(null)
         navigate('/')

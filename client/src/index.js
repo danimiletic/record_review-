@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initMiddleware } from 'devise-axios';
 import AuthProvider from './providers/AuthProvider';
 
-// initMiddleware();
+initMiddleware();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
